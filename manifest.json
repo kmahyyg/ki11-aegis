@@ -1,0 +1,31 @@
+{
+  "suite-version": "",
+  "binary-files": [
+    {
+      "name": "",
+      "version": "",
+      "description": "",
+      "sha256sum": ""
+    },
+    {
+      "name": "",
+      "version": "",
+      "description": "",
+      "sha256sum": ""
+    }
+  ],
+  "script-files": [
+    {
+      "name": "aegis_uninstall.sh",
+      "version": "20201208",
+      "description": "aegis_uninstall",
+      "sha256sum": "5265a344fd3d3c91d1e9169678e9dadf6296331ccf91132b99c728761bffb011"
+    },
+    {
+      "name": "quartz_uninstall.sh",
+      "version": "20201208",
+      "description": "quartz_uninstall",
+      "sha256sum": "5f845e765947c4568e1c201fdfeb016c19c940ca2f1636d1393a65a9ee367e8c"
+    }
+  ]
+}

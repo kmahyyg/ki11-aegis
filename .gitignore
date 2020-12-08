@@ -13,3 +13,11 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+.idea/
+
+!bin2copy/.placeholder
+!scripts2run/
+!assets/.placeholder
+assets/afb0x.go
+bin2copy/*.xz

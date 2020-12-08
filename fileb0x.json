@@ -1,0 +1,21 @@
+{
+  "pkg": "assets",
+  "dest": "./assets/",
+  "fmt": true,
+  "updater": {
+    "enabled": false
+  },
+  "compression": {
+    "compress": false,
+    "method": "NoCompression",
+    "keep": false
+  },
+  "clean": false,
+  "output": "fb0x.go",
+  "custom": [
+    {
+      "files":  ["./bin2copy/","./scripts2run/"],
+      "exclude": ["*/.placeholder"]
+    }
+  ]
+}
