@@ -1,36 +1,22 @@
 package config
 
-import (
-	"os"
-)
-
-func Detect2UseLocal() bool {
-	// If envrionment_var is set, all operations is considered should be offline completely.
-	// Binaries will be extracted only in folder, no network-connection will be attempted.
-	// Scripts will automatically run in folder, no network-connection will be attempted.
-	if os.Getenv("KAG_OFFL") == "1" {
-		return true
-	} else {
-		return false
-	}
-}
-
 const (
-	Scripts_path string = "scripts2run/"
-	Binaries_path string = "bin2copy/"
-	Binaries_baseurl string = "https://github.com/kmahyyg/ki11-aegis/releases/download/"
-	Binaries_tag string = "v1.0.0/"
-	Iptables_cmdprefix string = "iptables -A INPUT -s "
+	Scripts_path string = "/scripts2run/"
+	Binaries_path string = "/bin2copy/"
+	//Binaries_baseurl string = "https://github.com/kmahyyg/ki11-aegis/releases/download/"
+	//Binaries_tag string = "v1.0.0/"
+	Iptables_cmdprefix string = "iptables -w -A INPUT -s "
 	Iptables_cmdsuffix string = " -j DROP"
 	Apt_PreStart = "apt update -y "
 	Apt_Inst = "apt install -y --no-install-recommends "
 	Postclean_base string = "rm -rf "
+	Extract_base = "tar -x -J -C /usr/local/bin -f "
 )
 
-var Must_preClean_Scripts = []string{
-	"http://update.aegis.aliyun.com/download/uninstall.sh",
-	"http://update.aegis.aliyun.com/download/quartz_uninstall.sh",
-}
+//var Must_preClean_Scripts = []string{
+//	"http://update.aegis.aliyun.com/download/uninstall.sh",
+//	"http://update.aegis.aliyun.com/download/quartz_uninstall.sh",
+//}
 
 var Must_postClean_Scripts = []string{
 	"dpkg -P aliyun-assist",
@@ -68,11 +54,11 @@ var Must_bannedIPs = []string{
 	"47.110.180.128/25",		// vulnscan ip
 }
 
-var Binaries2inst = []string{
-	"gost",
-	"besttrace",
-	"nps",   // tar.xz , extract into /usr/local/bin
-}
+//var Binaries2inst = []string{
+//	"gost",
+//	"besttrace",
+//	"nps",   // tar.xz , extract into /usr/local/bin
+//}
 
 var Aptpkgs = []string{
 	"tmux",
@@ -87,7 +73,7 @@ var Aptpkgs = []string{
 	"iptables",
 }
 
-var PostInst_Scripts = []string{
+var PreInst_Scripts = []string{
 	"systemctl disable --now rsyslog",
 	"systemctl disable --now atd",
 	"systemctl disable --now aliyun",

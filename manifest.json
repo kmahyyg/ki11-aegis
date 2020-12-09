@@ -1,31 +1,43 @@
 {
-  "suite-version": "",
+  "suite-version": "v1.0.0",
   "binary-files": [
     {
-      "name": "",
-      "version": "",
-      "description": "",
-      "sha256sum": ""
+      "name": "besttrace.tar.xz",
+      "version": "v1.2.0",
+      "description": "besttrace linux amd64",
+      "sha256sum": "3a9c25c60823195a390f76318a6912f8e2938a89a1fafb60ca2e6c213f0ba34f"
     },
     {
-      "name": "",
-      "version": "",
-      "description": "",
-      "sha256sum": ""
+      "name": "gost.tar.xz",
+      "version": "v2.11.1",
+      "description": "gost linux amd64",
+      "sha256sum": "082f3faba8f14caacd9cb3bc3f88a6f390d0fc72a20f897eb52c40ad0f4597c9"
+    },
+    {
+      "name": "nps.tar.xz",
+      "version": "v0.26.9",
+      "description": "nps_s nps_c linux amd64",
+      "sha256sum": "b8dc634b127f642b2d743a5a4fe199a820ed07d2b1998e7e5f62b1fa091bfe08"
     }
   ],
   "script-files": [
     {
       "name": "aegis_uninstall.sh",
-      "version": "20201208",
+      "version": "v20201208",
       "description": "aegis_uninstall",
       "sha256sum": "5265a344fd3d3c91d1e9169678e9dadf6296331ccf91132b99c728761bffb011"
     },
     {
       "name": "quartz_uninstall.sh",
-      "version": "20201208",
+      "version": "v20201208",
       "description": "quartz_uninstall",
       "sha256sum": "5f845e765947c4568e1c201fdfeb016c19c940ca2f1636d1393a65a9ee367e8c"
+    },
+    {
+      "name": "autoupgrade_disable.sh",
+      "version": "v18.04lts",
+      "description": "disable ubuntu auto upgrade",
+      "sha256sum": "4fc7de43c335134c43fb79b46987c69ff9d1abb2f5df413caed82f3619526d84"
     }
   ]
 }
