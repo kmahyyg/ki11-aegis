@@ -71,6 +71,9 @@ var Aptpkgs = []string{
 	"zip",
 	"xz-utils",
 	"iptables",
+	"rsync",
+	"lrzsz",
+	"git",
 }
 
 var PreInst_Scripts = []string{

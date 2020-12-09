@@ -14,6 +14,7 @@ import (
 	"io/ioutil"
 	_ "github.com/kmahyyg/ki11-aegis/assets"
 	"strings"
+	"time"
 )
 
 func runShellCmd(command string){
@@ -54,9 +55,8 @@ func main() {
 		runShellCmd(config.Apt_PreStart)
 		fmt.Println("Update package database done.")
 		// apt install
-		for i:= 0; i < len(config.Aptpkgs); i++ {
-			runShellCmd(config.Apt_Inst + config.Aptpkgs[i])
-		}
+		pkgStrs := strings.Join(config.Aptpkgs, " ")
+		runShellCmd(config.Apt_Inst + " " + pkgStrs)
 		fmt.Println("Install packages via apt done.")
 	}
 	// create temp folder
@@ -85,6 +85,9 @@ func main() {
 	for j := 0; j < len(filesEmbed); j++ {
 		currentEmbeddedFile := filesEmbed[j]
 		fmt.Println("Extracting : " + currentEmbeddedFile)
+		if !strings.Contains(currentEmbeddedFile,"/") {
+			continue
+		} // might be bug in future, so make sure you are putting all files in subfolder
 		fileContent, err := assets.ReadFile(currentEmbeddedFile)
 		if err != nil {
 			log.Fatal(err)
@@ -100,9 +103,11 @@ func main() {
 			runShellCmd(config.Extract_base + tempBinDir + "/" + currentEmbeddedFile)
 		} else if strings.HasSuffix(currentEmbeddedFile, ".sh") {  // run all scripts
 			fmt.Println("Running..." + currentEmbeddedFile)
-			runShellCmd(tempBinDir + "/" + currentEmbeddedFile)
+			runShellCmd("bash "+ tempBinDir + "/" + currentEmbeddedFile)  // fix permission problem
 		}
 	}
+	// fix permission problem
+	runShellCmd("chmod -R +x /usr/local/bin")
 	// clean out via dpkg
 	for k := 0; k < len(config.Must_postClean_Scripts); k++ {
 		fmt.Println("Run PostClean Scripts...")
@@ -121,7 +126,11 @@ func main() {
 	// persistent iptables
 	fmt.Println("Persistent iptables...")
 	runShellCmd("iptables-save > /etc/iptables.rules")
+	// sleep 10 secs for I/O wait
+	runShellCmd("sync")
+	time.Sleep(10 * time.Second)
 	// self-clean
+	runShellCmd("sync")
 	_ = os.Remove(os.Args[0])
 	fmt.Println("Self-clean done. Please reboot.")
 }
